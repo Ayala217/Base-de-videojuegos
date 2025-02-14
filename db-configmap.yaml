@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+data:
+  init.sql: |
+    CREATE TABLE IF NOT EXISTS juego (
+        id SERIAL PRIMARY KEY,
+        nombre VARCHAR(100),
+        fecha_lanzamiento DATE,
+        desarollador VARCHAR(150)
+    );
+
+    CREATE TABLE IF NOT EXISTS critica (
+        id SERIAL PRIMARY KEY,
+        juego_id INT REFERENCES juego(id),
+        nota INT,
+        critica_parrafo VARCHAR(4000),
+        fecha_critica DATE
+    );
